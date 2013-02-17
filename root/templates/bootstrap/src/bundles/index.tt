@@ -1,0 +1,26 @@
+<form method="POST">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>id</th>
+        <th>client</th>
+        <th>name</th>
+        <th>rank</th>
+        <th>interval</th>
+        <th>refresh_at</th>
+      </tr>
+    </thead>
+    <tbody>
+      [% FOREACH bundle IN bundles %]
+      <tr>
+        <td>[% bundle.id %]</td>
+        <td>[% bundle.client.username %]</td>
+        <td>[% bundle.name %]</td>
+        <td>[% bundle.rank %]</td>
+        <td>[% bundle.interval %]</td>
+        <td>[% bundle.refresh_at %]</td>
+      </tr>
+      [% END %]
+    </tbody>
+  </table>
+</form>

@@ -1,0 +1,21 @@
+<!-- BEGIN site/header -->
+<header>
+  <div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <a data-target=".nav-collapse" data-toggle="collapse" class="btn btn-navbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+        <a href="/" class="brand">[% c.config.brand or c.config.name.upper %]</a>
+        <div class="nav-collapse">
+          <ul class="nav">
+            <li><a href="/">Home</a></li>
+          </ul>
+        </div><!-- /.nav-collapse -->
+      </div>
+    </div><!-- /navbar-inner -->
+  </div>
+</header>
+<!-- END site/header -->

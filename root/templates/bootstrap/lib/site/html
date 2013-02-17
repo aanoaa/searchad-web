@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>[% meta.title or c.config.name %]</title>
+    <link href="[% c.uri_for('/static/css/screen.css') %]" media="screen, projection" rel="stylesheet" type="text/css" />
+    [%- FOREACH css IN csses %]
+    <link rel="stylesheet" href="[% c.uri_for('/static/css/' _ css) %]" type="text/css" />
+    [% END %]
+  </head>
+  <body>
+    [% content %]
+    <script src="[% c.uri_for('/static/scripts/jquery-1.9.1.min.js') %]"></script>
+    <script src="[% c.uri_for('/static/scripts/bootstrap.min.js') %]"></script>
+    <script src="[% meta.scripts or c.uri_for('/static/scripts/app.js') %]"></script>
+  </body>
+</html>

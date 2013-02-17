@@ -1,0 +1,14 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>username</th>
+    </tr>
+  </thead>
+  <tbody>
+    [% FOREACH client IN clients %]
+    <tr>
+      <td><a href="[% c.uri_for('/clients', client.username) %]">[% client.username %]</a></td>
+    </tr>
+    [% END %]
+  </tbody>
+</table>

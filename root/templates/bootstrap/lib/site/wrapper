@@ -1,0 +1,7 @@
+[%
+   IF no_wrapper;
+     content;
+   ELSE; 
+     content WRAPPER site/html + site/layout;
+   END;
+%]
