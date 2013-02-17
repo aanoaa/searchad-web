@@ -13,10 +13,14 @@ SearchAd::Schema::Result::Bundle
 use strict;
 use warnings;
 
+=head1 BASE CLASS: L<SearchAd::Schema::ResultBase>
+
+=cut
+
 use Moose;
 use MooseX::NonMoose;
 use namespace::autoclean;
-extends 'DBIx::Class::Core';
+extends 'SearchAd::Schema::ResultBase';
 
 =head1 TABLE: C<bundle>
 
@@ -56,6 +60,7 @@ __PACKAGE__->table("bundle");
 =head2 refresh_at
 
   data_type: 'integer'
+  inflate_datetime: 'epoch'
   is_nullable: 1
 
 =cut
@@ -72,7 +77,7 @@ __PACKAGE__->add_columns(
   "interval",
   { data_type => "integer", is_nullable => 1 },
   "refresh_at",
-  { data_type => "integer", is_nullable => 1 },
+  { data_type => "integer", inflate_datetime => "epoch", is_nullable => 1 },
 );
 
 =head1 PRIMARY KEY
@@ -110,8 +115,8 @@ __PACKAGE__->belongs_to(
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.07033 @ 2013-02-08 18:22:22
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:gAYa/Wv+nXmvwwduHZ/8Kg
+# Created by DBIx::Class::Schema::Loader v0.07033 @ 2013-02-17 18:28:56
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:cyPqgcnAFu18grfQ6PZAXw
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration

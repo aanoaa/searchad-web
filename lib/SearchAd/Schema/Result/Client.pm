@@ -13,10 +13,14 @@ SearchAd::Schema::Result::Client
 use strict;
 use warnings;
 
+=head1 BASE CLASS: L<SearchAd::Schema::ResultBase>
+
+=cut
+
 use Moose;
 use MooseX::NonMoose;
 use namespace::autoclean;
-extends 'DBIx::Class::Core';
+extends 'SearchAd::Schema::ResultBase';
 
 =head1 TABLE: C<client>
 
@@ -97,8 +101,8 @@ __PACKAGE__->has_many(
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.07033 @ 2013-02-17 16:08:43
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:ufmZbrdpmm1fN9wJn3SiKw
+# Created by DBIx::Class::Schema::Loader v0.07033 @ 2013-02-17 18:28:56
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:/mvSmWnzOetVTZfMGPWBrQ
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration
