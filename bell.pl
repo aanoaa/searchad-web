@@ -77,7 +77,7 @@ sub select_bundle {
         $irc->send_srv(
             'PRIVMSG',
             $channel,
-            "$username: " . join ' ', @{ $client{$username} }
+            "$username: searchad " . join ' ', @{ $client{$username} }
         );
     }
 }
