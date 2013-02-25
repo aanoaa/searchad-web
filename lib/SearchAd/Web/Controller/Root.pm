@@ -18,6 +18,13 @@ sub default :Path {
     $c->response->status(404);
 }
 
+sub error: Action :Args(1) {
+    my ($self, $c, $code) = @_;
+
+    $c->res->code($code);
+    $c->stash->{template} = "errors/$code.tt";
+}
+
 sub end : ActionClass('RenderView') {}
 
 __PACKAGE__->meta->make_immutable;
