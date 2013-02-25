@@ -1,6 +1,10 @@
 <h1>[% bundle.name %]</h1>
 <h2>[% bundle.id %]</h2>
 
+<div class="pull-right">
+  <a href="[% c.req.uri %]" class="btn btn-mini btn-danger btn-delete">delete</a>
+</div>
+
 <form method="post" class="form-horizontal">
   <div class="control-group">
     <label class="control-label">name</label>
@@ -32,7 +36,7 @@
 
   <div class="control-group">
     <div class="controls">
-      <button type="submit" class="btn btn-primary">Confirm</button>
+      <button type="submit" class="btn btn-primary">Save</button>
     </div>
   </div>
 </form>

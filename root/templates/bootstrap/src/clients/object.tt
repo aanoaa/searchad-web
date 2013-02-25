@@ -1,12 +1,16 @@
 [% meta.scripts = '/static/scripts/client-object.js' %]
 <h1>[% client.username %]</h1>
 
+<div class="pull-right">
+  <a href="[% c.uri_for(client.username, 'sync') %]" class="btn btn-mini">sync</a>
+</div>
+
 <table class="table">
   <thead>
     <tr>
       <th>name</th>
       <th>rank</th>
-      <th>interval</th>
+      <th>interval(minutes)</th>
       <th>refresh_at</th>
     </tr>
   </thead>
