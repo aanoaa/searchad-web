@@ -15,6 +15,7 @@ BEGIN { extends 'Catalyst::Controller'; }
 sub index :Path :Args(0) {
     my ( $self, $c ) = @_;
 
+    $c->detach('index_POST') if $c->req->method eq 'POST';
     $c->stash->{clients} = [$c->model('DBIC')->resultset('Client')->search];
 }
 
@@ -26,6 +27,46 @@ sub _object :Chained :PathPart('clients') :CaptureArgs(1) {
 
 sub object :Chained('_object') PathPart('') :Args(0) {
     my ($self, $c) = @_;
+
+    $c->detach('object_DELETE') if $c->req->method eq 'DELETE';
+}
+
+sub object_DELETE :Action {
+    my ($self, $c) = @_;
+
+    my $client = $c->stash->{client};
+    for my $bundle ($client->bundles) {
+        $bundle->delete;
+    }
+
+    $client->delete;
+
+    $c->res->body('deleted');
+}
+
+sub add :Local {
+    my ($self, $c) = @_;
+}
+
+sub index_POST :Action {
+    my ($self, $c) = @_;
+
+    # validation?
+
+    my $username = $c->req->param('username');
+    my $password = $c->req->param('password');
+
+    my $client_rs = $c->model('DBIC')->resultset('Client');
+    my $added = $client_rs->update_or_create({
+        username => $username,
+        password => $password
+    });
+
+    unless ($added) {
+        # TODO: error handling
+    }
+
+    $c->res->redirect($c->uri_for($added->username));
 }
 
 sub sync :Chained('_object') :PathPart('sync') :Args(0) {

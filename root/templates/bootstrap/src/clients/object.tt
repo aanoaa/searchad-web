@@ -1,8 +1,8 @@
-[% meta.scripts = '/static/scripts/client-object.js' %]
 <h1>[% client.username %]</h1>
 
 <div class="pull-right">
   <a href="[% c.uri_for(client.username, 'sync') %]" class="btn btn-mini">sync</a>
+  <a href="[% c.uri_for(client.username) %]" class="btn btn-mini btn-danger btn-delete">delete</a>
 </div>
 
 <table class="table">
