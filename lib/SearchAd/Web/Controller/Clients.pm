@@ -2,6 +2,8 @@ package SearchAd::Web::Controller::Clients;
 use Moose;
 use namespace::autoclean;
 
+use WWW::Naver::SearchAd;
+
 BEGIN { extends 'Catalyst::Controller'; }
 
 =head1 METHODS
@@ -24,6 +26,34 @@ sub _object :Chained :PathPart('clients') :CaptureArgs(1) {
 
 sub object :Chained('_object') PathPart('') :Args(0) {
     my ($self, $c) = @_;
+}
+
+sub sync :Chained('_object') :PathPart('sync') :Args(0) {
+    my ($self, $c) = @_;
+
+    my $client = $c->stash->{client};
+    my $bundle_rs = $c->model('DBIC')->resultset('Bundle');
+
+    my $agent = WWW::Naver::SearchAd->new;
+    if ($agent->signin($client->username, $client->password)) {
+        if (my $bundles = $agent->get_bundles) {
+            for my $bundle (@$bundles) {
+                $bundle_rs->update_or_create({
+                    id        => $bundle->{bundleId},
+                    client_id => $client->id,
+                    name      => $bundle->{bundleName},
+                });
+
+                $c->res->redirect($c->uri_for($client->username));
+            }
+        } else {
+            $c->stash->{error} = $agent->{error};
+            $c->detach('/error/502');
+        }
+    } else {
+        $c->stash->{error} = $agent->{error};
+        $c->detach('/error/502');
+    }
 }
 
 __PACKAGE__->meta->make_immutable;
