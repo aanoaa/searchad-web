@@ -60,7 +60,7 @@ $condvar->recv;
 sub select_bundle {
     my $epoch = DateTime->now->epoch;
     my $rs = $schema->resultset('Bundle')->search_literal(
-        'me.refresh_at < (? - (me.interval * 60)) OR me.refresh_at is NULL',
+        'me.refresh_at <= (? - (me.interval * 60)) OR me.refresh_at is NULL',
         $epoch
     );
 
