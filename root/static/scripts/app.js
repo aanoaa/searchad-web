@@ -2,7 +2,21 @@
 (function() {
 
   $(function() {
-    return console.log('oops');
+    return $('.btn-delete').click(function(e) {
+      e.preventDefault();
+      return $.ajax(location.href, {
+        type: 'DELETE',
+        success: function(data, textStatus, jqXHR) {
+          var path;
+          path = location.pathname.split('/');
+          path.pop();
+          return location.href = path.join('/');
+        },
+        error: function(jqXHR, textStatus, err) {
+          return alert("something wrong: " + textStatus);
+        }
+      });
+    });
   });
 
 }).call(this);

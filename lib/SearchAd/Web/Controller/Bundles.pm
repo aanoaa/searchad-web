@@ -22,6 +22,7 @@ sub bundle :Chained('/clients/_object') PathPart('') :Args(1) {
     $c->stash->{bundle} = $c->model('DBIC')->resultset('Bundle')->find({ id => $id });
 
     $c->detach('bundle_POST') if $c->req->method eq 'POST';
+    $c->detach('bundle_DELETE') if $c->req->method eq 'DELETE';
 }
 
 sub bundle_POST :Action {
@@ -39,6 +40,14 @@ sub bundle_POST :Action {
             $c->stash->{client}->username
         )
     );
+}
+
+sub bundle_DELETE :Action {
+    my ($self, $c) = @_;
+
+    my $bundle = $c->stash->{bundle};
+    $bundle->delete;
+    $c->res->body('deleted');
 }
 
 __PACKAGE__->meta->make_immutable;
