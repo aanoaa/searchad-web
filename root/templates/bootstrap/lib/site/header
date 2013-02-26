@@ -1,21 +1,28 @@
 <!-- BEGIN site/header -->
 <header>
-  <div class="navbar navbar-fixed-top">
+  <div class="navbar">
     <div class="navbar-inner">
-      <div class="container">
-        <a data-target=".nav-collapse" data-toggle="collapse" class="btn btn-navbar">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </a>
-        <a href="/" class="brand">[% c.config.brand or c.config.name.upper %]</a>
-        <div class="nav-collapse">
-          <ul class="nav">
-            <li><a href="/">Home</a></li>
-          </ul>
-        </div><!-- /.nav-collapse -->
-      </div>
-    </div><!-- /navbar-inner -->
+      <a class="brand" href="/">[% c.config.brand or c.config.name.upper %]</a>
+      <ul class="nav">
+        <!--<li class="active"><a href="#">Home</a></li>-->
+      </ul>
+
+      [% IF c.user_exists %]
+      <ul class="nav pull-right">
+        <li><a href="[% c.uri_for('/users', c.user.username) %]"><i class="icon-user"></i> aanoaa</a></li>
+        <li><a href="[% c.uri_for('/signout') %]">signout</a></li>
+      </ul>
+      [% ELSIF c.action.name == 'intro' %]
+      <ul class="nav pull-right">
+        <li><a href="[% c.uri_for('/signup') %]">signup</a></li>
+        <li><a href="[% c.uri_for('/signin') %]">signin</a></li>
+      </ul>
+      [% ELSE %]
+      <ul class="nav pull-right">
+        <li><a href="[% c.uri_for('/signin') %]">signin</a></li>
+      </ul>
+      [% END %]
+    </div>
   </div>
 </header>
 <!-- END site/header -->

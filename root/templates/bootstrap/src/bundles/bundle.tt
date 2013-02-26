@@ -1,42 +1,72 @@
-<h1>[% bundle.name %]</h1>
-<h2>[% bundle.id %]</h2>
+<div id="bundle-info" class="[% bundle.active ? 'active' : 'inactive' %]">
+  <ul class="breadcrumb">
+    <li><a href="[% c.uri_for('/') %]">Home</a> <span class="divider">/</span></li>
+    <li><a href="[% c.uri_for('/clients', bundle.client.username) %]">[% bundle.client.username %]</a> <span class="divider">/</span></li>
+    <li class="active">[% bundle.name %]</li>
+  </ul>
 
-<div class="pull-right">
-  <a href="[% c.req.uri %]" class="btn btn-mini btn-danger btn-delete">delete</a>
+  <div>
+    <h2>
+      [% bundle.name %] <small>[% bundle.client.username %]</small>
+      [% IF bundle.active %]
+      <a href="[% c.req.uri %]" class="btn btn-mini btn-stop">stop</a>
+      [% ELSE %]
+      <a href="[% c.req.uri %]" class="btn btn-mini btn-resume">resume</a>
+      [% END %]
+      <a href="[% c.req.uri %]" class="btn btn-mini btn-danger btn-delete">delete</a>
+    </h2>
+  </div>
+
+  <form method="post" class="form-inline">
+    <select name="rank">
+      [% FOREACH i IN [1 .. 10] %]
+      <option value="[% i %]"[% ' selected="selected"' IF bundle.rank == i %]>Power [% loop.count %]</option>
+      [% END %]
+      [% FOREACH i IN [11 .. 15] %]
+      <option value="[% i %]"[% ' selected="selected"' IF bundle.rank == i %]>Biz [% loop.count %]</option>
+      [% END %]
+    </select>
+    <input type="text" name="interval" placeholder="minutes" value="[% bundle.interval %]" class="input-mini"> min
+    <button type="submit" class="btn btn-primary">Save</button>
+  </form>
+
+  <table class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        [% FOREACH day IN ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'] %]
+        <th class="active-on [% bundle.days('day' => day) ? 'success' : 'error' %]">[% day %]</th>
+        [% END %]
+      </tr>
+    </thead>
+  </table>
 </div>
 
-<form method="post" class="form-horizontal">
-  <div class="control-group">
-    <label class="control-label">name</label>
-    <div class="controls">
-      <input type="text" name="name" value="[% bundle.name %]"/>
-    </div>
+<div class="row">
+  <div class="span12">
+    <h3>통계</h3>
   </div>
-
-  <div class="control-group">
-    <label class="control-label">rank</label>
-    <div class="controls">
-      <select name="rank">
-        [% FOREACH i IN [1 .. 10] %]
-        <option value="[% i %]"[% ' selected="selected"' IF bundle.rank == i %]>Power [% loop.count %]</option>
+  <div class="span6">
+    <h4 class="label label-success">Success</h4>
+    <div class="well">
+      <ul>
+        [% FOREACH history IN history.success %]
+        <li>
+          [% history.created_at.ymd %] [% history.created_at.hms %]
+        </li>
         [% END %]
-        [% FOREACH i IN [11 .. 15] %]
-        <option value="[% i %]"[% ' selected="selected"' IF bundle.rank == i %]>Biz [% loop.count %]</option>
+      </ul>
+    </div>
+  </div>
+  <div class="span6">
+    <h4 class="label label-important">Fail</h4>
+    <div class="well">
+      <ul>
+        [% FOREACH history IN history.fail %]
+        <li>
+          [% history.created_at.ymd %] [% history.created_at.hms %]
+        </li>
         [% END %]
-      </select>
+      </ul>
     </div>
   </div>
-
-  <div class="control-group">
-    <label class="control-label">interval</label>
-    <div class="controls">
-      <input type="text" name="interval" placeholder="minutes" value="[% bundle.interval %]"/> minutes
-    </div>
-  </div>
-
-  <div class="control-group">
-    <div class="controls">
-      <button type="submit" class="btn btn-primary">Save</button>
-    </div>
-  </div>
-</form>
+</div>

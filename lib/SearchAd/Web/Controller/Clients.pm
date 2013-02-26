@@ -59,7 +59,8 @@ sub index_POST :Action {
     my $client_rs = $c->model('DBIC')->resultset('Client');
     my $added = $client_rs->update_or_create({
         username => $username,
-        password => $password
+        password => $password,
+        user_id  => $c->user->id,
     });
 
     unless ($added) {
@@ -79,13 +80,17 @@ sub sync :Chained('_object') :PathPart('sync') :Args(0) {
     if ($agent->signin($client->username, $client->password)) {
         if (my $bundles = $agent->get_bundles) {
             for my $bundle (@$bundles) {
-                $bundle_rs->update_or_create({
+                my $bundle = $bundle_rs->update_or_create({
                     id        => $bundle->{bundleId},
                     client_id => $client->id,
                     name      => $bundle->{bundleName},
                 });
 
-                $c->res->redirect($c->uri_for($client->username));
+                unless ($bundle->bundle_days->all) {
+                    $bundle->create_related('bundle_days', { day_id => $_ }) for 1 .. 7;
+                }
+
+                $c->res->redirect($c->uri_for('/'));
             }
         } else {
             $c->stash->{error} = $agent->{error};

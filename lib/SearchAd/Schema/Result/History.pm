@@ -1,12 +1,12 @@
 use utf8;
-package SearchAd::Schema::Result::Client;
+package SearchAd::Schema::Result::History;
 
 # Created by DBIx::Class::Schema::Loader
 # DO NOT MODIFY THE FIRST PART OF THIS FILE
 
 =head1 NAME
 
-SearchAd::Schema::Result::Client
+SearchAd::Schema::Result::History
 
 =cut
 
@@ -22,11 +22,11 @@ use MooseX::NonMoose;
 use namespace::autoclean;
 extends 'SearchAd::Schema::ResultBase';
 
-=head1 TABLE: C<client>
+=head1 TABLE: C<history>
 
 =cut
 
-__PACKAGE__->table("client");
+__PACKAGE__->table("history");
 
 =head1 ACCESSORS
 
@@ -36,20 +36,22 @@ __PACKAGE__->table("client");
   is_auto_increment: 1
   is_nullable: 0
 
-=head2 user_id
+=head2 bundle_id
 
   data_type: 'integer'
   is_foreign_key: 1
   is_nullable: 1
 
-=head2 username
+=head2 status
 
-  data_type: 'text'
+  data_type: 'integer'
+  default_value: 1
   is_nullable: 1
 
-=head2 password
+=head2 created_at
 
-  data_type: 'text'
+  data_type: 'integer'
+  inflate_datetime: 'epoch'
   is_nullable: 1
 
 =cut
@@ -57,12 +59,12 @@ __PACKAGE__->table("client");
 __PACKAGE__->add_columns(
   "id",
   { data_type => "integer", is_auto_increment => 1, is_nullable => 0 },
-  "user_id",
+  "bundle_id",
   { data_type => "integer", is_foreign_key => 1, is_nullable => 1 },
-  "username",
-  { data_type => "text", is_nullable => 1 },
-  "password",
-  { data_type => "text", is_nullable => 1 },
+  "status",
+  { data_type => "integer", default_value => 1, is_nullable => 1 },
+  "created_at",
+  { data_type => "integer", inflate_datetime => "epoch", is_nullable => 1 },
 );
 
 =head1 PRIMARY KEY
@@ -77,49 +79,20 @@ __PACKAGE__->add_columns(
 
 __PACKAGE__->set_primary_key("id");
 
-=head1 UNIQUE CONSTRAINTS
-
-=head2 C<username_unique>
-
-=over 4
-
-=item * L</username>
-
-=back
-
-=cut
-
-__PACKAGE__->add_unique_constraint("username_unique", ["username"]);
-
 =head1 RELATIONS
 
-=head2 bundles
+=head2 bundle
 
-Type: has_many
+Type: belongs_to
 
 Related object: L<SearchAd::Schema::Result::Bundle>
 
 =cut
 
-__PACKAGE__->has_many(
-  "bundles",
-  "SearchAd::Schema::Result::Bundle",
-  { "foreign.client_id" => "self.id" },
-  { cascade_copy => 0, cascade_delete => 0 },
-);
-
-=head2 user
-
-Type: belongs_to
-
-Related object: L<SearchAd::Schema::Result::User>
-
-=cut
-
 __PACKAGE__->belongs_to(
-  "user",
-  "SearchAd::Schema::Result::User",
-  { id => "user_id" },
+  "bundle",
+  "SearchAd::Schema::Result::Bundle",
+  { id => "bundle_id" },
   {
     is_deferrable => 0,
     join_type     => "LEFT",
@@ -129,8 +102,8 @@ __PACKAGE__->belongs_to(
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.07033 @ 2013-02-27 01:56:59
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:zfJ+HuEbrbylpEoDBj4Tig
+# Created by DBIx::Class::Schema::Loader v0.07033 @ 2013-02-27 05:23:33
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:xRsG8gjBt+8lpQgMRnexXw
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration

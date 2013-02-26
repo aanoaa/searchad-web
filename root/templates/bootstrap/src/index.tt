@@ -1,1 +1,36 @@
-<h1>SearchAd</h1>
+<div class="row">
+  <div class="span8">
+    <div class="row">
+      <div class="span8">
+        <h2>주요키워드별 입찰순위</h2>
+        <ul class="rank">
+          [% FOREACH rank IN [1..15] %]
+            [% SET bundles = items.$rank %]
+          <li>
+            <em class="label label-rank">[% rank %]</em>
+            [% FOREACH bundle IN bundles %]
+            <span class="badge badge-rank [% bundle.active == 1 ? 'badge-success' : 'badge-important' %]">
+              <a href="[% c.uri_for('/clients', bundle.client.username, bundle.id) %]">[% bundle.name %]:[% bundle.interval %]</a>
+            </span>
+            [% END %]
+          </li>
+          [% END %]
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="span3 offset1">
+    <h3>
+      <span class="naver">Naver</span> 계정
+      <a href="[% c.uri_for('/clients/add') %]" class="btn btn-mini">add</a>
+    </h3>
+    <ul>
+      [% FOREACH client IN c.user.clients %]
+      <li>
+        <a href="[% c.uri_for('/clients', client.username) %]">[% client.username %]</a>
+        <a href="[% c.uri_for('/clients', client.username, 'sync') %]" class="pull-right">sync</a>
+      </li>
+      [% END %]
+    </ul>
+  </div>
+</div>

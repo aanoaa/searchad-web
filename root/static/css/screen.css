@@ -553,10 +553,10 @@ table td[class*="span"], table th[class*="span"], .row-fluid table td[class*="sp
 .table-hover tbody tr.warning:hover td { background-color: #faf2cc; }
 .table-hover tbody tr.info:hover td { background-color: #c4e3f3; }
 
-[class^="icon-"], [class*=" icon-"] { display: inline-block; width: 14px; height: 14px; *margin-right: .3em; line-height: 14px; vertical-align: text-top; background-image: url(/static/images/glyphicons-halflings.png); background-position: 14px 14px; background-repeat: no-repeat; margin-top: 1px; }
+[class^="icon-"], [class*=" icon-"] { display: inline-block; width: 14px; height: 14px; *margin-right: .3em; line-height: 14px; vertical-align: text-top; background-image: url(/static/images/glyphicons-halflings.png?1361083838); background-position: 14px 14px; background-repeat: no-repeat; margin-top: 1px; }
 
 /* White icons with optional class, or on hover/active states of certain elements */
-.icon-white, .nav-pills > .active > a > [class^="icon-"], .nav-pills > .active > a > [class*=" icon-"], .nav-list > .active > a > [class^="icon-"], .nav-list > .active > a > [class*=" icon-"], .navbar-inverse .nav > .active > a > [class^="icon-"], .navbar-inverse .nav > .active > a > [class*=" icon-"], .dropdown-menu > li > a:hover > [class^="icon-"], .dropdown-menu > li > a:hover > [class*=" icon-"], .dropdown-menu > .active > a > [class^="icon-"], .dropdown-menu > .active > a > [class*=" icon-"], .dropdown-submenu:hover > a > [class^="icon-"], .dropdown-submenu:hover > a > [class*=" icon-"] { background-image: url(/static/images/glyphicons-halflings-white.png); }
+.icon-white, .nav-pills > .active > a > [class^="icon-"], .nav-pills > .active > a > [class*=" icon-"], .nav-list > .active > a > [class^="icon-"], .nav-list > .active > a > [class*=" icon-"], .navbar-inverse .nav > .active > a > [class^="icon-"], .navbar-inverse .nav > .active > a > [class*=" icon-"], .dropdown-menu > li > a:hover > [class^="icon-"], .dropdown-menu > li > a:hover > [class*=" icon-"], .dropdown-menu > .active > a > [class^="icon-"], .dropdown-menu > .active > a > [class*=" icon-"], .dropdown-submenu:hover > a > [class^="icon-"], .dropdown-submenu:hover > a > [class*=" icon-"] { background-image: url(/static/images/glyphicons-halflings-white.png?1361083838); }
 
 .icon-glass { background-position: 0      0; }
 
@@ -888,8 +888,8 @@ table td[class*="span"], table th[class*="span"], .row-fluid table td[class*="sp
 
 .typeahead { z-index: 1051; margin-top: 2px; -webkit-border-radius: 4px; -moz-border-radius: 4px; border-radius: 4px; }
 
-.well { min-height: 20px; padding: 19px; margin-bottom: 20px; background-color: whitesmoke; border: 1px solid #e3e3e3; -webkit-border-radius: 4px; -moz-border-radius: 4px; border-radius: 4px; -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05); -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05); box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05); }
-.well blockquote { border-color: #ddd; border-color: rgba(0, 0, 0, 0.15); }
+.well, ul.rank, #intro .price { min-height: 20px; padding: 19px; margin-bottom: 20px; background-color: whitesmoke; border: 1px solid #e3e3e3; -webkit-border-radius: 4px; -moz-border-radius: 4px; border-radius: 4px; -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05); -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05); box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05); }
+.well blockquote, ul.rank blockquote, #intro .price blockquote { border-color: #ddd; border-color: rgba(0, 0, 0, 0.15); }
 
 .well-large { padding: 24px; -webkit-border-radius: 6px; -moz-border-radius: 6px; border-radius: 6px; }
 
@@ -1908,4 +1908,42 @@ a.label:hover, a.badge:hover { color: white; text-decoration: none; cursor: poin
   .navbar .btn-navbar { display: block; }
   .navbar-static .navbar-inner { padding-left: 10px; padding-right: 10px; } }
 @media (min-width: 980px) { .nav-collapse.collapse { height: auto !important; overflow: visible !important; } }
-body { padding-top: 60px; }
+body { padding-top: 10px; }
+
+.naver { color: green; font-weight: bold; }
+.naver:hover { color: #00b300; }
+
+.label.label-rank { width: 20px; background-color: #eeddee; color: #bb77bb; }
+
+ul.rank { background-color: white; font-size: 2em; padding-left: 1em; margin-left: 0; }
+ul.rank li { list-style-type: none; border-bottom: solid gray thin; }
+
+.badge.badge-rank a { color: white; }
+
+#intro .img-how-to { height: 500px; }
+#intro .price { background-color: #9999ff; text-align: center; color: white; }
+#intro .price:hover { background-color: #ccccff; }
+#intro .price p { font-size: 2em; }
+
+#signin form { text-align: center; margin-top: 20em; margin-bottom: 20em; }
+
+.table thead tr th.success { background-color: #dff0d8; }
+
+.table thead tr th.error { background-color: #f2dede; }
+
+#bundle-info.inactive { color: #999999; }
+#bundle-info .active-on { cursor: pointer; }
+
+.badge-mon { background-color: #fcb112; }
+
+.badge-tue { background-color: #ee9b71; }
+
+.badge-wed { background-color: #32ee14; }
+
+.badge-thu { background-color: #f41aaa; }
+
+.badge-fri { background-color: #678111; }
+
+.badge-sat { background-color: #551cba; }
+
+.badge-sun { background-color: #101010; }

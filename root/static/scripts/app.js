@@ -2,7 +2,7 @@
 (function() {
 
   $(function() {
-    return $('.btn-delete').click(function(e) {
+    $('.btn-delete').click(function(e) {
       e.preventDefault();
       return $.ajax(location.href, {
         type: 'DELETE',
@@ -11,6 +11,38 @@
           path = location.pathname.split('/');
           path.pop();
           return location.href = path.join('/');
+        },
+        error: function(jqXHR, textStatus, err) {
+          return alert("something wrong: " + textStatus);
+        }
+      });
+    });
+    $('.btn-stop,.btn-resume').click(function(e) {
+      var active;
+      e.preventDefault();
+      active = $(this).hasClass('btn-stop') ? 0 : 1;
+      return $.ajax(location.href, {
+        type: 'PUT',
+        data: {
+          active: active
+        },
+        success: function(data, textStatus, jqXHR) {
+          return location.reload();
+        },
+        error: function(jqXHR, textStatus, err) {
+          return alert("something wrong: " + textStatus);
+        }
+      });
+    });
+    return $('#bundle-info tr').on('click', 'th.active-on', function(e) {
+      var day, type;
+      e.preventDefault();
+      day = $(this).text();
+      type = $(this).hasClass('success') ? 'DELETE' : 'POST';
+      return $.ajax("" + location.href + "/days/" + day, {
+        type: type,
+        success: function(data, textStatus, jqXHR) {
+          return location.reload();
         },
         error: function(jqXHR, textStatus, err) {
           return alert("something wrong: " + textStatus);

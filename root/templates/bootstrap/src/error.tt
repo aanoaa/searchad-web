@@ -1,0 +1,15 @@
+[% IF error %]
+   [% IF error.size == 1 %]
+   <div class="alert alert-error">
+     <button type="button" class="close" data-dismiss="alert">&times;</button>
+     [% error %]
+   </div>
+   [% ELSE %]
+      [% FOREACH err IN error %]
+      <div class="alert alert-error">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        [% err %]
+      </div>
+      [% END %]
+   [% END %]
+[% END %]
