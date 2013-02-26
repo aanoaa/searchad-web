@@ -59,6 +59,12 @@ __PACKAGE__->table("bundle");
   default_value: 60
   is_nullable: 1
 
+=head2 active
+
+  data_type: 'integer'
+  default_value: 1
+  is_nullable: 1
+
 =head2 refresh_at
 
   data_type: 'integer'
@@ -78,6 +84,8 @@ __PACKAGE__->add_columns(
   { data_type => "integer", default_value => 15, is_nullable => 1 },
   "interval",
   { data_type => "integer", default_value => 60, is_nullable => 1 },
+  "active",
+  { data_type => "integer", default_value => 1, is_nullable => 1 },
   "refresh_at",
   { data_type => "integer", inflate_datetime => "epoch", is_nullable => 1 },
 );
@@ -117,8 +125,8 @@ __PACKAGE__->belongs_to(
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.07033 @ 2013-02-25 17:12:14
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:8lHp9KUOChl8H6MarLZeFg
+# Created by DBIx::Class::Schema::Loader v0.07033 @ 2013-02-27 03:18:15
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:oelIcEEz2UtFPKeg99lvMQ
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration

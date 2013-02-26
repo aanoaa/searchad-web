@@ -36,6 +36,12 @@ __PACKAGE__->table("client");
   is_auto_increment: 1
   is_nullable: 0
 
+=head2 user_id
+
+  data_type: 'integer'
+  is_foreign_key: 1
+  is_nullable: 1
+
 =head2 username
 
   data_type: 'text'
@@ -51,6 +57,8 @@ __PACKAGE__->table("client");
 __PACKAGE__->add_columns(
   "id",
   { data_type => "integer", is_auto_increment => 1, is_nullable => 0 },
+  "user_id",
+  { data_type => "integer", is_foreign_key => 1, is_nullable => 1 },
   "username",
   { data_type => "text", is_nullable => 1 },
   "password",
@@ -100,9 +108,29 @@ __PACKAGE__->has_many(
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
+=head2 user
 
-# Created by DBIx::Class::Schema::Loader v0.07033 @ 2013-02-17 18:28:56
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:/mvSmWnzOetVTZfMGPWBrQ
+Type: belongs_to
+
+Related object: L<SearchAd::Schema::Result::User>
+
+=cut
+
+__PACKAGE__->belongs_to(
+  "user",
+  "SearchAd::Schema::Result::User",
+  { id => "user_id" },
+  {
+    is_deferrable => 0,
+    join_type     => "LEFT",
+    on_delete     => "CASCADE",
+    on_update     => "CASCADE",
+  },
+);
+
+
+# Created by DBIx::Class::Schema::Loader v0.07033 @ 2013-02-27 01:56:59
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:zfJ+HuEbrbylpEoDBj4Tig
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration

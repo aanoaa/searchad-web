@@ -99,6 +99,21 @@ __PACKAGE__->set_primary_key("id");
 
 =head1 RELATIONS
 
+=head2 clients
+
+Type: has_many
+
+Related object: L<SearchAd::Schema::Result::Client>
+
+=cut
+
+__PACKAGE__->has_many(
+  "clients",
+  "SearchAd::Schema::Result::Client",
+  { "foreign.user_id" => "self.id" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
 =head2 user_roles
 
 Type: has_many
@@ -125,8 +140,8 @@ Composing rels: L</user_roles> -> role
 __PACKAGE__->many_to_many("roles", "user_roles", "role");
 
 
-# Created by DBIx::Class::Schema::Loader v0.07033 @ 2013-02-26 23:37:50
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:VsC5FwaJY+kg+f1Xhen6Dg
+# Created by DBIx::Class::Schema::Loader v0.07033 @ 2013-02-27 01:56:59
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:N2O6Olj6bBaKBGzpN1g1ug
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration
