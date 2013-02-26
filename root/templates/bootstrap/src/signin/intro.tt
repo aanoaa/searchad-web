@@ -1,1 +1,46 @@
-<h1>Intro</h1>
+<div id="intro">
+  <div class="row">
+    <div class="span3">
+      <img src="[% c.uri_for('/static/images/logo.png') %]" alt="logo" class="img-polaroid logo">
+    </div>
+    <div class="span9">
+      <h1>[% meta.title or c.config.name %]</h1>
+      <p>
+        <a href="http://searchad.naver.com/" class="naver">Naver</a> 의 키워드광고를 활용한 자동입찰 서비스 입니다.
+      </p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="span12">
+      <h2>사용방법 <small><a href="#">자세히</a></small></h2>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="span4">
+      <img src="[% c.uri_for('/static/images/intro1.png') %]" alt="intro-step-1" class="img-rounded img-how-to">
+    </div>
+    <div class="span4">
+      <img src="[% c.uri_for('/static/images/intro1.png') %]" alt="intro-step-2" class="img-rounded img-how-to">
+    </div>
+    <div class="span4">
+      <img src="[% c.uri_for('/static/images/intro1.png') %]" alt="intro-step-3" class="img-rounded img-how-to">
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="span12">
+      <h2>가격정책</h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="span4">
+      <div class="price">
+        <p>
+          10 만원 / 1 달
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
