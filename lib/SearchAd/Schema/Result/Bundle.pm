@@ -104,6 +104,21 @@ __PACKAGE__->set_primary_key("id");
 
 =head1 RELATIONS
 
+=head2 bundle_days
+
+Type: has_many
+
+Related object: L<SearchAd::Schema::Result::BundleDay>
+
+=cut
+
+__PACKAGE__->has_many(
+  "bundle_days",
+  "SearchAd::Schema::Result::BundleDay",
+  { "foreign.bundle_id" => "self.id" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
 =head2 client
 
 Type: belongs_to
@@ -124,9 +139,34 @@ __PACKAGE__->belongs_to(
   },
 );
 
+=head2 histories
 
-# Created by DBIx::Class::Schema::Loader v0.07033 @ 2013-02-27 03:18:15
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:oelIcEEz2UtFPKeg99lvMQ
+Type: has_many
+
+Related object: L<SearchAd::Schema::Result::History>
+
+=cut
+
+__PACKAGE__->has_many(
+  "histories",
+  "SearchAd::Schema::Result::History",
+  { "foreign.bundle_id" => "self.id" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
+=head2 days
+
+Type: many_to_many
+
+Composing rels: L</bundle_days> -> day
+
+=cut
+
+__PACKAGE__->many_to_many("days", "bundle_days", "day");
+
+
+# Created by DBIx::Class::Schema::Loader v0.07033 @ 2013-02-27 05:22:28
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:ajJ/8jEz6TCOBCSE6TWk5g
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration
