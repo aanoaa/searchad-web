@@ -3,14 +3,14 @@
     <div class="row">
       <div class="span8">
         <h2>주요키워드별 입찰순위</h2>
-        <ul>
+        <ul class="rank">
           [% FOREACH rank IN [1..15] %]
             [% SET bundles = items.$rank %]
           <li>
             <em class="label label-rank">[% rank %]</em>
             [% FOREACH bundle IN bundles %]
             <span class="badge badge-rank [% bundle.active == 1 ? 'badge-success' : 'badge-important' %]">
-              <a href="[% c.uri_for('/clients', bundle.client.username, bundle.id) %]">[% bundle.name %]</a>
+              <a href="[% c.uri_for('/clients', bundle.client.username, bundle.id) %]">[% bundle.name %]:[% bundle.interval %]</a>
             </span>
             [% END %]
           </li>

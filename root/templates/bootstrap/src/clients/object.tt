@@ -1,25 +1,31 @@
 <h1>[% client.username %]</h1>
 
 <div class="pull-right">
-  <a href="[% c.uri_for(client.username, 'sync') %]" class="btn btn-mini">pull-data</a>
+  <a href="[% c.uri_for(client.username, 'sync') %]" class="btn btn-mini">sync</a>
   <a href="[% c.uri_for(client.username) %]" class="btn btn-mini btn-danger btn-delete">delete</a>
 </div>
 
-<table class="table">
+<table class="table table-striped table-bordered">
   <thead>
     <tr>
       <th>name</th>
       <th>rank</th>
       <th>interval(minutes)</th>
+      <th>days</th>
       <th>refresh_at</th>
     </tr>
   </thead>
   <tbody>
     [% FOREACH bundle IN client.bundles %]
-    <tr>
+    <tr class="[% bundle.active ? 'success' : 'error' %]">
       <td><a href="[% c.uri_for('/clients', client.username, bundle.id) %]">[% bundle.name %]</a></td>
       <td>[% bundle.rank %]</td>
       <td>[% bundle.interval %]</td>
+      <td>
+        [% FOREACH day IN bundle.days %]
+        <span class="badge badge-[% day.day.lower %]">[% day.day %]</span>
+        [% END %]
+      </td>
       <td>[% bundle.refresh_at or 'never run' %]</td>
     </tr>
     [% END %]
