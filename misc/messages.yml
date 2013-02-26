@@ -1,0 +1,12 @@
+signin:
+  username:
+    NOT_BLANK: 사용자명이 필요합니다
+  password:
+    NOT_BLANK: 비밀번호를 입력해주세요
+
+signon:
+  username:
+    NOT_BLANK: 사용자명이 필요합니다
+    EXIST: 이미 사용중인 계정입니다
+  password:
+    NOT_BLANK: 비밀번호를 입력해주세요

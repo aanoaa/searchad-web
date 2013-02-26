@@ -1,0 +1,8 @@
+<div id="signin">
+  [% INCLUDE error.tt %]
+  <form class="form-inline" method="post">
+    <input type="text" name="username" class="input-small" placeholder="username">
+    <input type="password" name="password" class="input-small" placeholder="password">
+    <button type="submit" class="btn btn-primary">Sign in</button>
+  </form>
+</div>

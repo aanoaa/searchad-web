@@ -1,5 +1,6 @@
 {
     name => 'searchad-web',
+    ## Disable deprecated behavior needed by old applications
     disable_component_resolution_regex_fallback => 1,
     enable_catalyst_header => 1,
     default_view => 'Bootstrap',
@@ -28,5 +29,33 @@
                 sqlite_unicode => 1,
             }
         }
+    },
+    authentication => {
+        default_realm => "users",
+        realms        => {
+            users => {
+                # Catalyst::Authentication::Credential::Password
+                credential => {
+                    class              => "Password",
+                    password_field     => "password",
+                    password_type      => 'hashed',
+                    password_hash_type => 'SHA-1'
+                },
+                store => {
+                    class       => "DBIx::Class",
+                    user_model  => "DBIC::User",
+                },
+            }
+        }
+    },
+    session => {
+        flash_to_stash => 1,
+        storage        => "__path_to(tmp/storage/session)__",
+        expires        => 60 * 60 * 24,
+        unlink_on_exit => 0,
+    },
+    validator => {
+        options  => { charset => "utf8" },
+        messages => "__path_to(misc/messages.yml)__",
     },
 }
