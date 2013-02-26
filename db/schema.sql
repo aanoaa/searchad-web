@@ -2,6 +2,9 @@ PRAGMA fireign_keys = ON;
 
 DROP TABLE bundle;
 DROP TABLE client;
+DROP TABLE user;
+DROP TABLE role;
+DROP TABLE user_role;
 
 CREATE TABLE client (
     id       INTEGER,
@@ -18,4 +21,25 @@ CREATE TABLE bundle (
     rank       INTEGER DEFAULT 15,
     interval   INTEGER DEFAULT 60, -- minutes
     refresh_at INTEGER  -- epoch time
+);
+
+CREATE TABLE user (
+    id            INTEGER PRIMARY KEY,
+    username      TEXT,
+    password      TEXT,
+    email_address TEXT,
+    first_name    TEXT,
+    last_name     TEXT,
+    active        INTEGER
+);
+
+CREATE TABLE role (
+    id   INTEGER PRIMARY KEY,
+    role TEXT
+);
+
+CREATE TABLE user_role (
+    user_id INTEGER REFERENCES user(id) ON DELETE CASCADE ON UPDATE CASCADE,
+    role_id INTEGER REFERENCES role(id) ON DELETE CASCADE ON UPDATE CASCADE,
+    PRIMARY KEY (user_id, role_id)
 );

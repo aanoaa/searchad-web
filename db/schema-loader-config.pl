@@ -1,7 +1,9 @@
 {
     schema_class => "SearchAd::Schema",
     connect_info => {
-        dsn               => "dbi:SQLite:db/searchad.db",
+        dsn            => "dbi:SQLite:db/searchad.db",
+        on_connect_do  => 'PRAGMA foreign_keys = ON',
+        sqlite_unicode => 1,
     },
     loader_options => {
         dump_directory     => 'lib',
