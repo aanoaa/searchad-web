@@ -25,6 +25,7 @@
         args  => {
             connect_info => {
                 dsn => "dbi:SQLite:db/searchad.db",
+                sqlite_unicode => 1,
             }
         }
     },
