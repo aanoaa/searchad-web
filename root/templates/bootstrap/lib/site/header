@@ -14,7 +14,7 @@
       </ul>
       [% ELSIF c.action.name == 'intro' %]
       <ul class="nav pull-right">
-        <li><a href="[% c.uri_for('/signon') %]">signon</a></li>
+        <li><a href="[% c.uri_for('/signup') %]">signup</a></li>
         <li><a href="[% c.uri_for('/signin') %]">signin</a></li>
       </ul>
       [% ELSE %]

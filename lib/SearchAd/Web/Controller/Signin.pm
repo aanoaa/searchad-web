@@ -39,13 +39,13 @@ sub intro :Path('/intro') :Args(0) {
     my ($self, $c) = @_;
 }
 
-sub signon :Path('/signon') :Args(0) {
+sub signup :Path('/signon') :Args(0) {
     my ($self, $c) = @_;
 
     $c->forward('index_POST') if $c->req->method eq 'POST';
 }
 
-sub signon_POST :Action { }
+sub signup_POST :Action { }
 
 __PACKAGE__->meta->make_immutable;
 
