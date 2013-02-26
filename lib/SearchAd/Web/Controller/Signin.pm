@@ -39,7 +39,7 @@ sub intro :Path('/intro') :Args(0) {
     my ($self, $c) = @_;
 }
 
-sub signup :Path('/signon') :Args(0) {
+sub signup :Path('/signup') :Args(0) {
     my ($self, $c) = @_;
 
     $c->forward('index_POST') if $c->req->method eq 'POST';
