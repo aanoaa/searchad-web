@@ -59,7 +59,8 @@ sub index_POST :Action {
     my $client_rs = $c->model('DBIC')->resultset('Client');
     my $added = $client_rs->update_or_create({
         username => $username,
-        password => $password
+        password => $password,
+        user_id  => $c->user->id,
     });
 
     unless ($added) {

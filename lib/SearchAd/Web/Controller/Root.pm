@@ -9,7 +9,15 @@ __PACKAGE__->config(namespace => '');
 sub index :Path :Args(0) {
     my ( $self, $c ) = @_;
 
-    $c->res->redirect('/clients');
+    my @clients_id;
+    map { push @clients_id, $_->id } $c->user->clients;
+    my @bundles = $c->model('DBIC')->resultset('Bundle')->search({
+        client_id => { -in => \@clients_id }
+    });
+
+    my %items;
+    map { push $items{$_->rank} ||= [], $_ } @bundles;
+    $c->stash->{items} = \%items;
 }
 
 sub default :Path {
