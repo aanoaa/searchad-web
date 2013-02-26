@@ -80,11 +80,15 @@ sub sync :Chained('_object') :PathPart('sync') :Args(0) {
     if ($agent->signin($client->username, $client->password)) {
         if (my $bundles = $agent->get_bundles) {
             for my $bundle (@$bundles) {
-                $bundle_rs->update_or_create({
+                my $bundle = $bundle_rs->update_or_create({
                     id        => $bundle->{bundleId},
                     client_id => $client->id,
                     name      => $bundle->{bundleName},
                 });
+
+                unless ($bundle->bundle_days->all) {
+                    $bundle->create_related('bundle_days', { day_id => $_ }) for 1 .. 7;
+                }
 
                 $c->res->redirect($c->uri_for('/'));
             }

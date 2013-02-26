@@ -37,7 +37,8 @@ sub bundle_POST :Action {
     $c->res->redirect(
         $c->uri_for(
             '/clients',
-            $c->stash->{client}->username
+            $c->stash->{client}->username,
+            $bundle->id
         )
     );
 }
@@ -46,6 +47,8 @@ sub bundle_DELETE :Action {
     my ($self, $c) = @_;
 
     my $bundle = $c->stash->{bundle};
+    $bundle->delete_related('histories');
+    $bundle->delete_related('bundle_days');
     $bundle->delete;
     $c->res->body('deleted');
 }
