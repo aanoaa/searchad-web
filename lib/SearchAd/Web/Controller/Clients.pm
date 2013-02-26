@@ -86,7 +86,7 @@ sub sync :Chained('_object') :PathPart('sync') :Args(0) {
                     name      => $bundle->{bundleName},
                 });
 
-                $c->res->redirect($c->uri_for($client->username));
+                $c->res->redirect($c->uri_for('/'));
             }
         } else {
             $c->stash->{error} = $agent->{error};
