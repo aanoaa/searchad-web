@@ -3,3 +3,45 @@
 @import "bootstrap";
 @import "bootstrap-responsive";
 body { padding-top: 10px }
+
+.naver {
+    $linkColor: green;
+    $linkColorHover: lighten($linkColor, 10%);
+    color: $linkColor;
+    &:hover {
+        color: $linkColorHover;
+    }
+    font-weight: bold;
+}
+
+.badge.badge-rank {
+    a {
+        color: white
+    }
+}
+
+#intro {
+    .img-how-to {
+        height: 500px;
+    }
+    .price {
+        @extend .well;
+        background-color: lighten(blue, 30%);
+        text-align: center;
+        color: white;
+        &:hover {
+            background-color: lighten(blue, 40%);
+        }
+        p {
+            font-size: 2em;
+        }
+    }
+}
+
+#signin {
+    form {
+        text-align: center;
+        margin-top: 20em;
+        margin-bottom: 20em;
+    }
+}
