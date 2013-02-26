@@ -553,10 +553,10 @@ table td[class*="span"], table th[class*="span"], .row-fluid table td[class*="sp
 .table-hover tbody tr.warning:hover td { background-color: #faf2cc; }
 .table-hover tbody tr.info:hover td { background-color: #c4e3f3; }
 
-[class^="icon-"], [class*=" icon-"] { display: inline-block; width: 14px; height: 14px; *margin-right: .3em; line-height: 14px; vertical-align: text-top; background-image: url(/static/images/glyphicons-halflings.png); background-position: 14px 14px; background-repeat: no-repeat; margin-top: 1px; }
+[class^="icon-"], [class*=" icon-"] { display: inline-block; width: 14px; height: 14px; *margin-right: .3em; line-height: 14px; vertical-align: text-top; background-image: url(/static/images/glyphicons-halflings.png?1361083838); background-position: 14px 14px; background-repeat: no-repeat; margin-top: 1px; }
 
 /* White icons with optional class, or on hover/active states of certain elements */
-.icon-white, .nav-pills > .active > a > [class^="icon-"], .nav-pills > .active > a > [class*=" icon-"], .nav-list > .active > a > [class^="icon-"], .nav-list > .active > a > [class*=" icon-"], .navbar-inverse .nav > .active > a > [class^="icon-"], .navbar-inverse .nav > .active > a > [class*=" icon-"], .dropdown-menu > li > a:hover > [class^="icon-"], .dropdown-menu > li > a:hover > [class*=" icon-"], .dropdown-menu > .active > a > [class^="icon-"], .dropdown-menu > .active > a > [class*=" icon-"], .dropdown-submenu:hover > a > [class^="icon-"], .dropdown-submenu:hover > a > [class*=" icon-"] { background-image: url(/static/images/glyphicons-halflings-white.png); }
+.icon-white, .nav-pills > .active > a > [class^="icon-"], .nav-pills > .active > a > [class*=" icon-"], .nav-list > .active > a > [class^="icon-"], .nav-list > .active > a > [class*=" icon-"], .navbar-inverse .nav > .active > a > [class^="icon-"], .navbar-inverse .nav > .active > a > [class*=" icon-"], .dropdown-menu > li > a:hover > [class^="icon-"], .dropdown-menu > li > a:hover > [class*=" icon-"], .dropdown-menu > .active > a > [class^="icon-"], .dropdown-menu > .active > a > [class*=" icon-"], .dropdown-submenu:hover > a > [class^="icon-"], .dropdown-submenu:hover > a > [class*=" icon-"] { background-image: url(/static/images/glyphicons-halflings-white.png?1361083838); }
 
 .icon-glass { background-position: 0      0; }
 
@@ -1908,4 +1908,4 @@ a.label:hover, a.badge:hover { color: white; text-decoration: none; cursor: poin
   .navbar .btn-navbar { display: block; }
   .navbar-static .navbar-inner { padding-left: 10px; padding-right: 10px; } }
 @media (min-width: 980px) { .nav-collapse.collapse { height: auto !important; overflow: visible !important; } }
-body { padding-top: 60px; }
+body { padding-top: 10px; }
