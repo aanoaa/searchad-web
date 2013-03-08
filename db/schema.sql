@@ -47,6 +47,7 @@ CREATE TABLE bundle (
     client_id  INTEGER REFERENCES client(id) ON DELETE CASCADE ON UPDATE CASCADE,
     name       TEXT,
     rank       INTEGER DEFAULT 15,
+    `limit`    INTEGER DEFAULT NULL,
     interval   INTEGER DEFAULT 60, -- minutes
     active     INTEGER DEFAULT 1,
     refresh_at INTEGER  -- epoch time

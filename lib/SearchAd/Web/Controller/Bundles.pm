@@ -43,6 +43,7 @@ sub bundle_POST :Action {
     $bundle->name($c->req->param('name'));
     $bundle->rank($c->req->param('rank'));
     $bundle->interval($c->req->param('interval'));
+    $bundle->limit($c->req->param('limit'));
     $bundle->update;
 
     $c->res->redirect(

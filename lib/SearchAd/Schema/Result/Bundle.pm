@@ -53,6 +53,12 @@ __PACKAGE__->table("bundle");
   default_value: 15
   is_nullable: 1
 
+=head2 limit
+
+  data_type: 'integer'
+  default_value: null
+  is_nullable: 1
+
 =head2 interval
 
   data_type: 'integer'
@@ -82,6 +88,8 @@ __PACKAGE__->add_columns(
   { data_type => "text", is_nullable => 1 },
   "rank",
   { data_type => "integer", default_value => 15, is_nullable => 1 },
+  "limit",
+  { data_type => "integer", default_value => \"null", is_nullable => 1 },
   "interval",
   { data_type => "integer", default_value => 60, is_nullable => 1 },
   "active",
@@ -165,8 +173,8 @@ Composing rels: L</bundle_days> -> day
 __PACKAGE__->many_to_many("days", "bundle_days", "day");
 
 
-# Created by DBIx::Class::Schema::Loader v0.07033 @ 2013-02-27 05:22:28
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:ajJ/8jEz6TCOBCSE6TWk5g
+# Created by DBIx::Class::Schema::Loader v0.07033 @ 2013-03-08 18:17:03
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:ogkVMeOX4dFTM1T4WaEqfw
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration

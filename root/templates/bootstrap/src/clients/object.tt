@@ -11,6 +11,7 @@
       <th>name</th>
       <th>rank</th>
       <th>interval(minutes)</th>
+      <th>max limit</th>
       <th>days</th>
       <th>refresh_at</th>
     </tr>
@@ -21,6 +22,7 @@
       <td><a href="[% c.uri_for('/clients', client.username, bundle.id) %]">[% bundle.name %]</a></td>
       <td>[% bundle.rank %]</td>
       <td>[% bundle.interval %]</td>
+      <td>[% bundle.limit | comma %]</td>
       <td>
         [% FOREACH day IN bundle.days %]
         <span class="badge badge-[% day.day.lower %]">[% day.day %]</span>
