@@ -16,7 +16,8 @@ my $password = $ENV{SBM_PASSWORD} || '';
 
 my $schema = SearchAd::DBIC->new({
     connect_info => {
-        dsn => "dbi:SQLite:db/searchad.db"
+        dsn        => "dbi:SQLite:db/searchad.db",
+        quote_char => q{`},
     }
 });
 
